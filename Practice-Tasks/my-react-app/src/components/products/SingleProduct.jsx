@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const SingleProduct = ({ shoe }) => {
   // eslint-disable-next-line react/prop-types
-  const { id, title, brand, price, description, image_url } = shoe;
+  const { _id, title, brand, price, description, image_url } = shoe;
   return (
     <div className="card w-72 xl:w-80 2xl:w-96 bg-base-100 shadow-xl">
       <figure>
@@ -26,7 +26,7 @@ const SingleProduct = ({ shoe }) => {
         <h2 className="text-lg font-bold">Price : {price} $$</h2>
         <div className="w-full mt-2">
           <button className="btn btn-primary w-full">
-            <Link to={`/products/${id}`}>View details</Link>
+            <Link to={`/products/${_id}`}>View details</Link>
           </button>
         </div>
       </div>

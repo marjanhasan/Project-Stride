@@ -3,14 +3,13 @@ const AddProducts = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const id = form.id.value;
     const title = form.title.value;
     const brand = form.brand.value;
     const price = form.price.value;
     const description = form.description.value;
     const image_url = form.image_url.value;
 
-    const data = { id, title, brand, price, description, image_url };
+    const data = { title, brand, price, description, image_url };
 
     await fetch("http://localhost:3000/shoes", {
       method: "POST",
@@ -20,8 +19,7 @@ const AddProducts = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         form.reset();
         Swal.fire({
           position: "top-end",
@@ -76,14 +74,6 @@ const AddProducts = () => {
               type="text"
               name="image_url"
               placeholder="Image URL"
-            />
-          </div>
-          <div className="mt-2">
-            <input
-              className="bg-gray-100 p-4 w-full border border-black rounded-lg"
-              type="text"
-              name="id"
-              placeholder="ID"
             />
           </div>
           <div className="mt-2 flex justify-center items-center">

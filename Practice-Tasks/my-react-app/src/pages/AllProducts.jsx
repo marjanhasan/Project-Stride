@@ -11,7 +11,7 @@ const AllProducts = () => {
   }, []);
 
   const handleDeleteProduct = (id) => {
-    setProducts(products.filter((product) => product.id !== id));
+    setProducts(products.filter((product) => product._id !== id));
   };
   return (
     <div>
@@ -19,7 +19,7 @@ const AllProducts = () => {
       <div className="my-16 flex flex-wrap gap-4 justify-evenly">
         {products.map((shoe) => (
           <SingleProductCard
-            key={shoe.id}
+            key={shoe._id}
             shoe={shoe}
             onDelete={handleDeleteProduct}
           />

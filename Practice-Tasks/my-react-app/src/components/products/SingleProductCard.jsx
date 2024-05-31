@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const SingleProductCard = ({ shoe, onDelete }) => {
-  const { id, title, brand, price, description, image_url } = shoe;
+  const { _id, title, brand, price, description, image_url } = shoe;
 
   const handleDelete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -46,12 +46,12 @@ const SingleProductCard = ({ shoe, onDelete }) => {
   };
 
   const deleteData = async () => {
-    await fetch(`http://localhost:3000/shoes/${id}`, {
+    await fetch(`http://localhost:3000/shoes/${_id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => {
-        onDelete(data.id);
+      .then(() => {
+        onDelete(_id);
       });
   };
 
@@ -76,10 +76,10 @@ const SingleProductCard = ({ shoe, onDelete }) => {
         <h2 className="text-lg font-bold">Price : {price} $$</h2>
         <div className="card-actions justify-between">
           <button className="btn btn-primary">
-            <Link to={`/products/${id}`}>Details</Link>
+            <Link to={`/products/${_id}`}>Details</Link>
           </button>
           <button className="btn btn-success">
-            <Link to={`edit/${id}`}>Edit</Link>
+            <Link to={`edit/${_id}`}>Edit</Link>
           </button>
           <button onClick={handleDelete} className="btn btn-error">
             Delete
