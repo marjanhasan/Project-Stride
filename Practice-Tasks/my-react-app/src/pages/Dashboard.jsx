@@ -1,11 +1,22 @@
+import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  console.log(user);
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data));
+  }, [user]);
+  console.log(userInfo);
+
   return (
     <div>
       <h1 className="text-4xl font-bold text-center">User Dashboard</h1>
+
       <div className="w-24 rounded-full border-2 border-black mx-auto my-6 overflow-hidden">
         <img src={user?.photoURL || "/placeholder.jpg"} />
       </div>
@@ -36,6 +47,12 @@ const Dashboard = () => {
           <span className="text-red-700 font-medium">N/A</span>
         )}
       </h2>
+      <Link
+        to={`/dashboard/edit/${userInfo?._id}`}
+        className="font-bold text-blue-600"
+      >
+        Edit Profile
+      </Link>
     </div>
   );
 };

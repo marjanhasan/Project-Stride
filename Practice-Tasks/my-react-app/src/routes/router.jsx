@@ -10,6 +10,7 @@ import SingleProductPage from "../pages/SingleProductPage";
 import AllProducts from "../pages/AllProducts";
 import AddProducts from "../pages/AddProducts";
 import EditProducts from "../pages/EditProducts";
+import EditProfile from "../pages/EditProfile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,16 @@ export const router = createBrowserRouter([
             <Dashboard />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/dashboard/edit/:id",
+        element: (
+          <PrivateRoutes>
+            <EditProfile />
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/user/get/${params.id}`),
       },
       {
         path: "all-products",

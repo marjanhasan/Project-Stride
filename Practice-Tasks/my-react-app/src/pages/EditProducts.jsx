@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 const EditProducts = () => {
   const shoe = useLoaderData();
+  const token = localStorage.getItem("token");
 
   const [title, setTitle] = useState(shoe.title);
   const [price, setPrice] = useState(shoe.price);
@@ -26,6 +27,7 @@ const EditProducts = () => {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     })
